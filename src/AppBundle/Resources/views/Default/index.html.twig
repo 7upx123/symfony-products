@@ -1,0 +1,28 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block menu %}
+    <div class="row green">
+        <div class="col-xs-12">
+            {# <h2>Default:index.html.twig</h2> #}
+            <ul class="nav nav-pills">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li><a href="{{ path('products') }}">Products</a></li>
+                    <li><a href="{{ path('profile') }}">Profile</a></li>
+                    <li><a href="{{ path('logout') }}" class="pink">Logout</a></li>
+                    <li class="vcenter">
+                        <b>
+                            {# {% if is_granted('ROLE_USER') %}
+                                id:{{ app.user.id }} ___
+                            {% endif %} #}
+                            {{ app.user.username }} {# ___ #}
+                            {# {% for role in app.user.roles %}{{ role }}{% endfor %} #}
+                        </b>
+                    </li>
+                {% else %}
+                    <li><a href="{{ path('authorization') }}">Authorization</a></li>
+                    <li><a href="{{ path('registration') }}">Registration</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
